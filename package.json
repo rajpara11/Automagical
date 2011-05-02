@@ -19,7 +19,7 @@
     "mime": "*", 
     "qs": "*", 
     "redis": "*", 
-    "jsdome": "*",  
+    "jsdom": "*",  
     "jquery": "*",  
     "request": "*",   
     "formidable": "*"     
