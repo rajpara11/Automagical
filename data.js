@@ -1,8 +1,18 @@
 //Redis connection stuff
 
 var redisNode = require('redis'),
-		redis = redisNode.createClient();
-		
+		//redis = redisNode.createClient(),
+    	parseUrl = require('url').parse;
+
+var db_uri = parseUrl(process.env['DUOSTACK_DB_REDIS']),
+    db_pwd = db_uri.auth.split(':')[1],
+    redis = redisNode.createClient(db_uri.port, db_uri.hostname);
+
+redis.auth(db_pwd, function () {
+  console.log('Redis authenticated');
+});
+
+
 redis.on('error', function(err){
 	console.log('Error on data layer ' + err);
 });
